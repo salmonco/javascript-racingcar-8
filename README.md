@@ -13,6 +13,7 @@
 
 1. Car
 
+- #name
 - #movingCount - 전진 횟수
 - move - 전진 횟수 1 증가
 - get movingCount
@@ -25,3 +26,5 @@
 - start - 경주 시작
 - #printStatus - 차마다 얼마나 이동했는지 출력
 - #printResult - 우승자 출력
+
+3. InputParser
