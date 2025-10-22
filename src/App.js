@@ -2,8 +2,6 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
-    // - 각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
-
     // - 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
     const racingCarNameStr = await MissionUtils.Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -12,6 +10,7 @@ class App {
 
     racingCarNames.forEach((name) => {
       if (name.length > 5) {
+        // - 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
@@ -41,6 +40,7 @@ class App {
         }
       });
 
+      // - 각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
       racingCarNames.forEach((name) => {
         MissionUtils.Console.print(`${name} : ${"-".repeat(obj[name] || 0)}`);
       });
@@ -49,14 +49,12 @@ class App {
     }
 
     // - 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
+    // - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
     const maxValue = Math.max(...Object.values(obj));
     const winners = Object.entries(obj)
       .filter(([name, value]) => value === maxValue)
       .map(([name]) => name);
     MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
-
-    // - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
-    // - 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
   }
 }
 
