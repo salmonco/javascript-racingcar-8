@@ -8,3 +8,20 @@
 - 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
 - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
 - 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
+
+### 설계
+
+1. Car
+
+- #movingCount - 전진 횟수
+- move - 전진 횟수 1 증가
+- get movingCount
+
+2. Race
+
+- #racingCars - 경주할 차 배열
+- #tryCount - 시도할 횟수
+- #checkIsMoving - 전진 여부 확인
+- start - 경주 시작
+- #printStatus - 차마다 얼마나 이동했는지 출력
+- #printResult - 우승자 출력
