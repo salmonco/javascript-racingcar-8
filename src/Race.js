@@ -1,12 +1,13 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { Car } from "./Car.js";
 
 export class Race {
   #racingCars;
 
   #tryCount;
 
-  constructor(racingCars, tryCount) {
-    this.#racingCars = racingCars;
+  constructor(racingCarNames, tryCount) {
+    this.#racingCars = this.#makeCars(racingCarNames);
     this.#tryCount = tryCount;
   }
 
@@ -22,9 +23,13 @@ export class Race {
     this.#printResult();
   }
 
+  #makeCars(racingCarNames) {
+    return racingCarNames.map((name) => new Car(name));
+  }
+
   #checkIsMoving() {
-    const ramdomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    const isMovingForward = ramdomNumber >= 4;
+    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    const isMovingForward = randomNumber >= 4;
     return isMovingForward;
   }
 

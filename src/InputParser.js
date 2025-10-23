@@ -1,28 +1,35 @@
-import { Car } from "./Car.js";
-
 export class InputParser {
-  #racingCarsInput;
+  #racingCarNames;
 
-  #tryCountInput;
+  #tryCount;
 
   constructor(racingCarsInput, tryCountInput) {
-    this.#racingCarsInput = racingCarsInput;
-    this.#tryCountInput = tryCountInput;
+    this.#racingCarNames = this.#parseRacingCarNames(racingCarsInput);
+    this.#tryCount = this.#parseTryCount(tryCountInput);
+
+    this.#validateCarNames();
   }
 
-  getRacingCars() {
-    const racingCarNames = this.#racingCarsInput.split(",");
+  parse() {
+    return {
+      racingCarNames: this.#racingCarNames,
+      tryCount: this.#tryCount,
+    };
+  }
 
-    racingCarNames.forEach((name) => {
+  #parseRacingCarNames(racingCarsInput) {
+    return racingCarsInput.split(",");
+  }
+
+  #parseTryCount(tryCountInput) {
+    return Number(tryCountInput);
+  }
+
+  #validateCarNames() {
+    this.#racingCarNames.forEach((name) => {
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
-
-    return racingCarNames.map((name) => new Car(name));
-  }
-
-  getTryCount() {
-    return Number(this.#tryCountInput);
   }
 }

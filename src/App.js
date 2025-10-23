@@ -8,11 +8,9 @@ class App {
     const tryCountInput = await readTryCountInput();
 
     const inputParser = new InputParser(racingCarsInput, tryCountInput);
-    const racingCars = inputParser.getRacingCars();
-    const tryCount = inputParser.getTryCount();
+    const { racingCarNames, tryCount } = inputParser.parse();
 
-    const race = new Race(racingCars, tryCount);
-
+    const race = new Race(racingCarNames, tryCount);
     race.start();
   }
 }
