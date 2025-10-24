@@ -1,10 +1,12 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { Car } from "../models/Car.js";
 import { InputParser } from "../utils/InputParser.js";
-import { Validator } from "../utils/Validator.js";
+import { Validator } from "../validators/Validator.js";
 import { View } from "../views/View.js";
 
 export class Race {
+  #MAX_MOVING_FORWARD_NUMBER = 4;
+
   #racingCars;
 
   #tryCount;
@@ -43,8 +45,8 @@ export class Race {
   #moveCars() {
     for (let i = 0; i < this.#tryCount; i++) {
       this.#racingCars.forEach((car) => {
-        if (this.#checkIsCarMoving()) {
-          car.move();
+        if (this.#checkIsCarMovingForward()) {
+          car.movingForward();
         }
       });
       View.output.printCarsStatus(this.#racingCars);
@@ -52,9 +54,9 @@ export class Race {
     View.output.printWinner(this.#racingCars);
   }
 
-  #checkIsCarMoving() {
+  #checkIsCarMovingForward() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    const isMovingForward = randomNumber >= 4;
+    const isMovingForward = randomNumber >= this.#MAX_MOVING_FORWARD_NUMBER;
     return isMovingForward;
   }
 }

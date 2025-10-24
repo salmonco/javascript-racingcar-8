@@ -7,7 +7,7 @@ export class Car {
     this.#name = name;
   }
 
-  move() {
+  movingForward() {
     this.#movingCount += 1;
   }
 
