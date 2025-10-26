@@ -26,6 +26,12 @@ const getLogSpy = () => {
 };
 
 describe("RaceTest", () => {
+  let race;
+
+  beforeEach(() => {
+    race = new Race();
+  });
+
   test("start", async () => {
     // given
     const MOVING_FORWARD = 4;
@@ -38,7 +44,6 @@ describe("RaceTest", () => {
     mockRandoms([MOVING_FORWARD, STOP, STOP]);
 
     // when
-    const race = new Race();
     await race.start();
 
     // then
@@ -52,10 +57,7 @@ describe("RaceTest", () => {
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
-    // when
-    const race = new Race();
-
-    // then
+    // when, then
     await expect(race.start()).rejects.toThrow("[ERROR]");
   });
 
@@ -64,10 +66,7 @@ describe("RaceTest", () => {
     const inputs = ["pobi,woni", "-1"];
     mockQuestions(inputs);
 
-    // when
-    const race = new Race();
-
-    // then
+    // when, then
     await expect(race.start()).rejects.toThrow("[ERROR]");
   });
 });
