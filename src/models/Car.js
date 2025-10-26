@@ -1,18 +1,18 @@
 export class Car {
   #name;
 
-  #movingCount = 0;
+  #movingForwardCount = 0;
 
   constructor(name) {
     this.#name = name;
   }
 
-  movingForward() {
-    this.#movingCount += 1;
+  moveForward() {
+    this.#movingForwardCount += 1;
   }
 
-  get movingCount() {
-    return this.#movingCount;
+  get movingForwardCount() {
+    return this.#movingForwardCount;
   }
 
   get name() {

@@ -46,7 +46,7 @@ export class Race {
     for (let i = 0; i < this.#tryCount; i++) {
       this.#racingCars.forEach((car) => {
         if (this.#checkIsCarMovingForward()) {
-          car.movingForward();
+          car.moveForward();
         }
       });
       View.output.printCarsStatus(this.#racingCars);

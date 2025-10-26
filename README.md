@@ -14,9 +14,8 @@
 1. Car
 
 - #name
-- #movingCount - 전진 횟수
-- move - 전진 횟수 1 증가
-- get movingCount
+- #movingForwardCount - 전진 횟수
+- moveForward - 전진 횟수 1 증가
 
 2. Race
 
