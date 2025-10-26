@@ -1,12 +1,21 @@
 import { Car } from "../src/models/Car.js";
 
 describe("CarTest", () => {
-  test("moveForward", () => {
-    const car = new Car("test");
+  let car;
+
+  beforeEach(() => {
+    car = new Car("test");
+  });
+
+  test("moveForward - 1회 전진", () => {
     car.moveForward();
     expect(car.movingForwardCount).toBe(1);
+  });
 
-    car.moveForward();
-    expect(car.movingForwardCount).toBe(2);
+  test("moveForward - 10회 전진", () => {
+    for (let i = 0; i < 10; i++) {
+      car.moveForward();
+    }
+    expect(car.movingForwardCount).toBe(10);
   });
 });
