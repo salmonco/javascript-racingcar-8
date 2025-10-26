@@ -16,6 +16,7 @@
 - #name
 - #movingForwardCount - 전진 횟수
 - moveForward - 전진 횟수 1 증가
+- checkIsMovingForward - 전진 여부 확인
 
 2. Race (Controller)
 
@@ -26,7 +27,6 @@
 - #parseInputs
 - #makeCarsToRace
 - #moveCars
-- #checkIsCarMovingForward - 전진 여부 확인
 
 3. View
 
