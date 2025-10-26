@@ -7,6 +7,9 @@ export class Car {
     this.#name = name;
   }
 
+  /**
+   * 1회 전진
+   */
   moveForward() {
     this.#movingForwardCount += 1;
   }
