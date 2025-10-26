@@ -11,19 +11,24 @@
 
 ### 설계
 
-1. Car
+1. Car (Model)
 
 - #name
 - #movingForwardCount - 전진 횟수
 - moveForward - 전진 횟수 1 증가
 
-2. Race
+2. Race (Controller)
 
 - #racingCars - 경주할 차 배열
 - #tryCount - 시도할 횟수
-- #checkIsMoving - 전진 여부 확인
 - start - 경주 시작
-- #printStatus - 차마다 얼마나 이동했는지 출력
-- #printResult - 우승자 출력
+- #readInputs
+- #parseInputs
+- #makeCarsToRace
+- #moveCars
+- #checkIsCarMovingForward - 전진 여부 확인
 
-3. InputParser
+3. View
+
+- input
+- output
