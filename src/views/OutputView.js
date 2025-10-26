@@ -1,30 +1,17 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
-const OUTPUT_MESSAGE = {
-  FINAL_WINNER: "최종 우승자 : ",
-  WINNERS_DELIMITER: ", ",
-  MOVING_FORWARD_SYMBOL: "-",
-};
+const FINAL_WINNER_PREFIX = "최종 우승자 : ";
+const WINNER_DELIMITER = ", ";
 
 export const OutputView = {
   printCarsStatus: (racingCars) => {
-    racingCars.forEach((car) => {
-      MissionUtils.Console.print(
-        `${car.name} : ${OUTPUT_MESSAGE.MOVING_FORWARD_SYMBOL.repeat(car.movingForwardCount)}`
-      );
-    });
+    MissionUtils.Console.print(racingCars.toString());
     MissionUtils.Console.print("\n");
   },
-
   printWinner: (racingCars) => {
-    const maxValue = Math.max(
-      ...racingCars.map((car) => car.movingForwardCount)
-    );
-    const winners = racingCars
-      .filter((car) => car.movingForwardCount === maxValue)
-      .map((car) => car.name);
+    const winners = racingCars.getWinnerNames();
     MissionUtils.Console.print(
-      `${OUTPUT_MESSAGE.FINAL_WINNER}${winners.join(OUTPUT_MESSAGE.WINNERS_DELIMITER)}`
+      `${FINAL_WINNER_PREFIX}${winners.join(WINNER_DELIMITER)}`
     );
   },
 };

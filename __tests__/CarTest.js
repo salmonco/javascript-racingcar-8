@@ -1,6 +1,9 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { Car } from "../src/models/Car.js";
 
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
@@ -17,41 +20,39 @@ describe("CarTest", () => {
     car = new Car("test");
   });
 
-  test("moveForward - 1회 전진", () => {
+  test("tryMovingForward - 전진", () => {
+    // given
+    mockRandoms([MOVING_FORWARD]);
+
     // when
-    car.moveForward();
+    car.tryMovingForward();
 
     // then
     expect(car.movingForwardCount).toBe(1);
   });
 
-  test("moveForward - 10회 전진", () => {
-    // when
-    for (let i = 0; i < 10; i++) {
-      car.moveForward();
-    }
-
-    // then
-    expect(car.movingForwardCount).toBe(10);
-  });
-
-  test("checkIsMovingForward - 전진", () => {
+  test("tryMovingForward - 정지", () => {
     // given
-    const MOVING_FORWARD = 4;
-
-    mockRandoms([MOVING_FORWARD]);
-
-    // when, then
-    expect(car.checkIsMovingForward()).toBe(true);
-  });
-
-  test("checkIsMovingForward - 정지", () => {
-    // given
-    const STOP = 3;
-
     mockRandoms([STOP]);
 
-    // when, then
-    expect(car.checkIsMovingForward()).toBe(false);
+    // when
+    car.tryMovingForward();
+
+    // then
+    expect(car.movingForwardCount).toBe(0);
+  });
+
+  test("toString", () => {
+    // given
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+
+    // when
+    car.tryMovingForward();
+    car.tryMovingForward();
+    car.tryMovingForward();
+    const carStatus = car.toString();
+
+    // then
+    expect(carStatus).toBe("test : ---");
   });
 });
