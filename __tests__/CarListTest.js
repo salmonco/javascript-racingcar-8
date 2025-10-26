@@ -28,8 +28,10 @@ describe("CarListTest", () => {
     carList.tryMovingForward();
 
     // then
-    const status = carList.toString();
-    expect(status).toBe("car1 : -\ncar2 : \ncar3 : -");
+    const movingForwardCounts = carList.cars.map(
+      (car) => car.movingForwardCount
+    );
+    expect(movingForwardCounts).toEqual([1, 0, 1]);
   });
 
   test("getWinnerNames", () => {

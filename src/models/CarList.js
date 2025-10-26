@@ -30,4 +30,8 @@ export class CarList {
   #getMaxMovingForwardCount() {
     return Math.max(...this.#cars.map((car) => car.movingForwardCount));
   }
+
+  get cars() {
+    return this.#cars;
+  }
 }
